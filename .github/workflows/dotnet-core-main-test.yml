@@ -1,4 +1,4 @@
-name: main-test.NET5
+name: main-test.NET6
 
 on:
   push:
@@ -14,13 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 5.0.301
+        dotnet-version: 6.0.x
     - name: Install dependencies
       run: dotnet restore
+      working-directory: src/
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
